@@ -9,58 +9,58 @@ import static org.hamcrest.Matchers.*;
 public class Chapter2Test {
 
     @Test
-    public void requestUsZipCode90210_checkStatusCode_expectHttp200() {
+    public void requestZaZipCode0002_checkStatusCode_expectHttp200() {
 
         given().
         when().
-            get("http://zippopotam.us/us/90210").
+            get("http://zippopotam.us/ZA/0002").
         then().
             assertThat().
             statusCode(200);
     }
 
     @Test
-    public void requestUsZipCode90210_checkContentType_expectApplicationJson() {
+    public void requestZAZipCode0002_checkContentType_expectApplicationJson() {
 
         given().
         when().
-            get("http://zippopotam.us/us/90210").
+            get("http://zippopotam.us/ZA/0002").
         then().
             assertThat().
             contentType(ContentType.JSON);
     }
 
     @Test
-    public void requestUsZipCode90210_logRequestAndResponseDetails() {
+    public void requestZaZipCode0002_logRequestAndResponseDetails() {
 
         given().
             log().all().
         when().
-            get("http://zippopotam.us/us/90210").
+            get("http://zippopotam.us/ZA/0002").
         then().
             log().body();
     }
 
     @Test
-    public void requestUsZipCode90210_checkPlaceNameInResponseBody_expectBeverlyHills() {
+    public void requestZaZipCode4000_checkPlaceNameInResponseBody_expectDurban() {
 
         given().
         when().
-            get("http://zippopotam.us/us/90210").
+            get("http://zippopotam.us/ZA/4000").
         then().
             assertThat().
-            body("places[0].'place name'", equalTo("Beverly Hills"));
+            body("places[0].'place name'", equalTo("Durban"));
     }
 
     @Test
-    public void requestUsZipCode90210_checkStateNameInResponseBody_expectCalifornia() {
+    public void requestZaZipCode4220_checkLongitudeValueInResponseBody_expect30() {
 
         given().
         when().
-            get("http://zippopotam.us/us/90210").
+            get("http://zippopotam.us/ZA/4220").
         then().
             assertThat().
-            body("places[0].state", equalTo("California"));
+            body("places[0].longitude", equalTo("30.5833"));
     }
 
     @Test
